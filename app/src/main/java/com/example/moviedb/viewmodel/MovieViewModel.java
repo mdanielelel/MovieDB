@@ -7,9 +7,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.moviedb.model.Genre;
 import com.example.moviedb.model.Movies;
 import com.example.moviedb.model.NowPlaying;
 import com.example.moviedb.repositories.MovieRepository;
+
+import java.util.ArrayList;
 
 public class MovieViewModel extends AndroidViewModel {
 
@@ -40,5 +43,14 @@ public class MovieViewModel extends AndroidViewModel {
         return resultGetNowPlaying;
     }
     //end of VM get now playing
+
+
+    private MutableLiveData<Genre> resultGetGenre= new MutableLiveData<>();
+    public void getGenre(){
+        resultGetGenre = repository.getGenreData();
+    }
+    public LiveData<Genre> getResultGenre(){
+        return resultGetGenre;
+    }
 
 }

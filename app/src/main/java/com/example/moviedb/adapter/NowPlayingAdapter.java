@@ -59,7 +59,11 @@ public class NowPlayingAdapter extends RecyclerView.Adapter<NowPlayingAdapter.Ca
             public void onClick(View view) {
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
                 intent.putExtra("movie_id", ""+results.getId());
+                intent.putExtra("sinopsis", ""+results.getOverview());
+                intent.putExtra("movie_img", ""+results.getPoster_path());
+                intent.putIntegerArrayListExtra("genre_id", (ArrayList<Integer>) results.getGenre_ids() );
                 context.startActivity(intent);
+
             }
         });
     }

@@ -3,6 +3,7 @@ package com.example.moviedb.repositories;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.moviedb.helper.Const;
+import com.example.moviedb.model.Genre;
 import com.example.moviedb.model.Movies;
 import com.example.moviedb.model.NowPlaying;
 import com.example.moviedb.retrofit.ApiService;
@@ -61,4 +62,22 @@ public class MovieRepository {
         return result;
     }
 
+    public MutableLiveData<Genre> getGenreData(){
+        final MutableLiveData<Genre> result = new MutableLiveData<>();
+
+        ApiService.endPoint().getGenre(Const.API_KEY).enqueue(new Callback<Genre>() {
+            @Override
+            public void onResponse(Call<Genre> call, Response<Genre> response) {
+                result.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Genre> call, Throwable t) {
+
+            }
+        });
+
+
+        return result;
+    }
 }
